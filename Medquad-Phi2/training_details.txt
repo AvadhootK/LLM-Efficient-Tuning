@@ -1,6 +1,0 @@
-Model name: phi-2-medquad_rank_1
-Training time: 658.20 seconds
-Model name: phi-2-medquad_rank_64
-Training time: 676.9516 seconds
-Model name: phi-2-medquad_rank_14
-Training time: 669.25 seconds
