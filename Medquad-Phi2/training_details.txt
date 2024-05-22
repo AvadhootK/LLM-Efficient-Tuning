@@ -1,8 +1,149 @@
 Model name: phi-2-medquad_rank_1
 Training time: 658.20 seconds
+
+Inference example: What are the symptoms of Schwannomatosis ?
+Model output:
+### Instruction: What are the symptoms of Schwannomatosis ?  ### Assistant: Key Points
+                - Schwannomatosis is a rare condition that causes tumors to form in the skin, nerves, and other tissues.
+                - The tumors are usually benign (noncancerous).
+                - The tumors can cause pain, numbness, and weakness in the affected area.
+                - The symptoms of Schwannomatosis vary depending on the location and size of the tumors.
+                - The symptoms of Schwannomatosis can be similar to those of other conditions, such as multiple myeloma.
+                - The symptoms of Schwannomatosis can be treated with surgery, radiation therapy, and chemotherapy.
+                - The prognosis for Schwannomatosis is generally good, with most patients living for many years after diagnosis.
+                - The National Cancer Institute has information about the treatment of Schwannomatosis.
+                - Key Points
+                - Schwannomatosis is a rare condition that causes tumors to form in the skin, nerves, and other tissues.
+                - The tumors are usually benign (noncancerous).
+                - The tumors can cause pain, numbness, and weakness in the affected area.
+                - The symptoms of Schwannomatosis
+
 Model name: phi-2-medquad_rank_64
 Training time: 676.9516 seconds
-Model name: phi-2-medquad_rank_14
+
+Inference example: What are the symptoms of Schwannomatosis ?
+Model output:
+### Instruction: What are the symptoms of Schwannomatosis ?  ### Assistant: What are the signs and symptoms of Schwannomatosis? The signs and symptoms of Schwannomatosis vary depending on the type of Schwannomatosis a person has. The following table lists the signs and symptoms that occur in some people with Schwannomatosis. You can use the MedlinePlus Medical Dictionary to look up the definitions for these medical terms. Signs and Symptoms Approximate number of patients (when available) Abdominal pain (90%) Abnormal bone formation (90%) Abnormal skin pigmentation (90%) Abnormal skin texture (90%) Abnormal sensation (90%) Abnormal sensation of touch (90%) Abnormal sensation of temperature (90%) Abnormal sensation of pain (90%) Abnormality of the eye (90%) Abnormality of the jaw (90%) Abnormality of the mouth (90%) Abnormality of the nose (90%) Abnormality of the skin (90%) Abnormality of the tongue (90%) Abnormality of the teeth (90%) Abnormality of the urethra (90%) Abnormality of the vagina (90%) Abnormality of the vulva (90%) Abnormality of the wrist (90%) Abnormality
+
+
+Model name: phi-2-medquad_rank_14 (maximum intrinsic dimention)
 Training time: 669.25 seconds
-Model name: phi-2-medquad_rank_8 (Intrinsic dim)
-Training time: 618.99 seconds
+
+Inference example: What are the symptoms of Schwannomatosis ?
+Model output:
+### Instruction: What are the symptoms of Schwannomatosis ?  ### Assistant: What are the signs and symptoms of Schwannomatosis? The signs and symptoms of Schwannomatosis vary depending on the type of Schwannomatosis. The following table lists the signs and symptoms of the different types of Schwannomatosis. You can use the MedlinePlus Medical Dictionary to look up the definitions for medical terms used in this table. Signs and Symptoms of Schwannomatosis Type of Schwannomatosis Abnormal bone formation (osteolysis) Abnormal bone formation (osteolysis) Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of the skin Abnormality of
+
+
+Model name: phi-2-medquad_rank_intrinsic_dims
+Training time: 667.67 seconds
+
+Inference example: What are the symptoms of Schwannomatosis ?
+Model output:
+### Instruction: What are the symptoms of Schwannomatosis ? 
+                
+The symptoms of Schwannomatosis may resemble other conditions or medical problems. Always consult your doctor for a diagnosis.
+                
+The symptoms of Schwannomatosis may include:
+                
+- Bone pain
+                
+- Bone fractures
+                
+- Bone deformities
+                
+- Bone spurs
+                
+- Bone weakness
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel syndrome
+                
+- Carpal tunnel
+
+Model name: phi-2-medquad_rank_intrinsic_dims
+Alpna pattern = rank values
+Training time: 669.02 seconds
+
+Inference example: What are the symptoms of Schwannomatosis ?
+Model output:
+### Instruction: What are the symptoms of Schwannomatosis ? 
+                - The symptoms of Schwannomatosis may resemble other conditions or medical problems. Always consult your physician for a diagnosis.
+                - The symptoms of Schwannomatosis may include the following:
+                - Abnormal skin growths
+                - Abnormal bone growths
+                - Abnormal bone pain
+                - Abnormal bone growths
+                - Abnormal bone pain
+                - Abnormal bone growths
+                - Abnormal bone pain
+                - Abnormal bone growths
+                - Abnormal bone pain
+                - Abnormal bone growths
+                - Abnormal bone pain
+                - Abnormal bone growths
+                - Abnormal bone pain
+                - Abnormal bone growths
+                - Abnormal bone pain
+                - Abnormal bone growths
+                - Abnormal bone pain
+                - Abnormal bone growths
+                - Abnormal bone pain
+                - Abnormal bone growths
+                - Abnormal bone pain
+                - Abnormal bone growths
+                - Abnormal bone pain
+                - Abnormal bone growths
+                - Abnormal bone pain
+                - Abnormal bone growths
+                - Abnormal bone pain
+                - Abnormal bone growths
+
+
+Model name: phi-2-medquad_rank_intrinsic_dims
+Training time: 775.35 seconds
+Alpha pattern: rank_pattern * 16
+
+Inference example: What are the symptoms of Schwannomatosis ?
+Model output:
+### Instruction: What are the symptoms of Schwannomatosis ?  ### Assistant: What are the signs and symptoms of Schwannomatosis? Schwannomatosis is a rare condition that affects the peripheral nervous system. The peripheral nervous system includes the nerves that connect the brain and spinal cord to the rest of the body. The peripheral nervous system controls movement, sensation, and organ function. Schwannomatosis is characterized by the formation of tumors on the peripheral nerves. These tumors are called schwannomas. Schwannomatosis can affect any nerve in the body, but it most commonly affects the nerves that control movement and sensation. The tumors can cause pain, weakness, and loss of sensation in the affected area. Schwannomatosis can also affect the autonomic nervous system, which controls involuntary body functions such as heart rate, blood pressure, and digestion. Autonomic nervous system involvement can cause symptoms such as dizziness, fainting, and digestive problems. Schwannomatosis is a rare condition, and its exact cause is unknown. However, it is believed to be related to a genetic mutation that affects the Schwann cells, which are the cells that form the tumors. Schwannomatosis is more common in males than females, and it is often diagnosed in childhood or adolescence. The symptoms
