@@ -1,0 +1,24 @@
+Model name: phi-2-medquad_rank_1
+trainable model parameters: 1310720
+all model parameters: 1522703360
+percentage of trainable model parameters: 0.09%
+
+Model name: phi-2-medquad_rank_6
+trainable model parameters: 7864320
+all model parameters: 1529256960
+percentage of trainable model parameters: 0.51%
+
+Model name: phi-2-medquad_rank_14
+trainable model parameters: 18350080
+all model parameters: 1539742720
+percentage of trainable model parameters: 1.19%
+
+Model name: phi-2-medquad_rank_64
+trainable model parameters: 83886080
+all model parameters: 1605278720
+percentage of trainable model parameters: 5.23%
+
+Model name: phi-2-medquad_rank_intrinsic_dims
+trainable model parameters: 10936320
+all model parameters: 1532328960
+percentage of trainable model parameters: 0.71%
