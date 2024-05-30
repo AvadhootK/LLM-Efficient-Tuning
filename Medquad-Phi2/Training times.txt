@@ -1,0 +1,28 @@
+Model name: phi-2-medquad_rank_1
+Training time: 659.44 seconds
+Training time: 657.2659
+Training time: 657.5101
+Training time: 658.2829
+Training time: 656.7438
+Training time: 656.0324
+Training time: 656.6244
+Training time: 657.218
+Training time: 656.957
+Training time: 656.9171
+Training time: 656.9473
+
+Model name: phi-2-medquad_rank_6
+Training time: 666.7365
+
+Model name: phi-2-medquad_rank_64
+Training time: 677.2949
+Training time: 677.5174
+Training time: 678.168
+Training time: 676.0681
+Training time: 677.5863
+Training time: 676.5891
+Training time: 677.1375
+
+
+Model name: phi-2-medquad_rank_14
+Training time: 668.1049

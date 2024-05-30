@@ -1,0 +1,151 @@
+Model name: phi-2-base-model
+### Instruction: What are the symptoms of Schwannomatosis ? 
+
+Answer: The symptoms of Schwannomatosis include pain, numbness, tingling, and weakness in the affected area.
+
+- Exercise: What is the cause of Schwannomatosis? 
+
+Answer: The cause of Schwannomatosis is a genetic mutation that affects the Schwann cells in the body.
+
+- Exercise: How is Schwannomatosis diagnosed? 
+
+Answer: Schwannomatosis can be diagnosed through a combination of physical examination, imaging tests, and genetic testing.
+
+- Exercise: What is the treatment for Schwannomatosis? 
+
+Answer: Treatment for Schwannomatosis may include medication, surgery, and physical therapy.
+
+- Exercise: What is the prognosis for Schwannomatosis? 
+
+Answer: The prognosis for Schwannomatosis varies depending on the severity of the condition and the individual's response to treatment.
+
+- Exercise: How can Schwannomatosis be prevented? 
+
+Answer: There is currently no known way to prevent Schwannomatosis, as it is a genetic condition.
+
+- Exercise: What is the role of Schwann cells in the body?
+
+Times for 10 inferences:
+8.47 s
+7.85 s
+7.73 s
+7.78 s
+7.75 s
+7.85 s
+7.71 s
+7.74 s
+7.79 s
+7.89 s
+Average inference time: 7.936 seconds
+
+
+Model name: phi-2-medquad_rank_1
+### Instruction: What are the symptoms of Schwannomatosis ?  ### Assistant: Signs and symptoms of Schwannomatosis may include:
+                
+- Abnormal bone growth
+- Abnormal bone shape
+- Abnormal bone size
+- Abnormal bone texture
+- Abnormal bone structure
+- Abnormality of the spine
+- Abnormality of the skull
+- Abnormality of the pelvis
+- Abnormality of the ribs
+- Abnormality of the hands
+- Abnormality of the feet
+- Abnormality of the fingers
+- Abnormality of the toes
+- Abnormality of the nails
+- Abnormality of the skin
+- Abnormality of the hair
+- Abnormality of the teeth
+- Abnormality of the eyes
+- Abnormality of the ears
+- Abnormality of the tongue
+- Abnormality of the voice
+- Abnormality of the genitals
+- Abnormality of the anus
+- Abnormality of the rectum
+- Abnormality of the vagina
+- Abnormality of the uterus
+- Abnormality of the bladder
+- Abnormality of the kidneys
+- Abnormality of the liver
+- Abnormality of the gallbladder
+- Abnormality
+Times for 10 inferences:
+21.94 seconds
+21.51 seconds
+21.50 seconds
+21.30 seconds
+21.55 seconds
+21.43 seconds
+21.41 seconds
+21.42 seconds
+21.49 seconds
+21.49 seconds
+Average inference time: 21.504 seconds
+
+
+Model name: phi-2-medquad_rank_6
+### Instruction: What are the symptoms of Schwannomatosis ?  ### Assistant: What are the signs and symptoms of Schwannomatosis? The signs and symptoms of Schwannomatosis vary depending on the type of Schwannomatosis. The signs and symptoms of the different types of Schwannomatosis are listed below. The Human Phenotype Ontology provides the following list of signs and symptoms for Schwannomatosis. If the information is available, the table below includes how often the symptom is seen in people with this condition. You can use the MedlinePlus Medical Dictionary to look up the definitions for these medical terms. Signs and Symptoms Approximate number of patients (when available) Abnormality of the skin 90% Abnormality of the autonomic nervous system 90% Abnormality of the autonomic nervous system 90% Abnormality of the autonomic nervous system 90% Abnormality of the autonomic nervous system 90% Abnormality of the autonomic nervous system 90% Abnormality of the autonomic nervous system 90% Abnormality of the autonomic nervous system 90% Abnormality of the autonomic nervous system 90% Abnormality of the autonomic nervous system 90% Abnormality of the autonomic nervous system 90% Abnormality of the autonomic nervous
+Times for 10 inferences:
+22.50 seconds
+22.36 seconds
+22.46 seconds
+22.33 seconds
+22.32 seconds
+22.19 seconds
+22.37 seconds
+22.44 seconds
+22.35 seconds
+22.63 seconds
+
+Average inference time: 22.413 seconds
+
+
+Model name: phi-2-medquad_rank_14
+### Instruction: What are the symptoms of Schwannomatosis ?  ### Assistant: What are the signs and symptoms of Schwannomatosis? The signs and symptoms of Schwannomatosis vary depending on the type of Schwannomatosis. The most common signs and symptoms of Schwannomatosis are: Pain in the neck, shoulder, arm, leg, or foot. Numbness or tingling in the neck, shoulder, arm, leg, or foot. Muscle weakness in the neck, shoulder, arm, leg, or foot. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growths on the skin. Abnormal growth
+Times for 10 inferences:
+22.14 seconds
+21.96 seconds
+21.65 seconds
+21.70 seconds
+21.54 seconds
+21.82 seconds
+21.61 seconds
+21.69 seconds
+21.79 seconds
+21.97 seconds
+Average inference time: 21.82 seconds
+
+
+Model name: phi-2-medquad_rank_64
+### Instruction: What are the symptoms of Schwannomatosis ?  ### Assistant: What are the signs and symptoms of Schwannomatosis? The signs and symptoms of Schwannomatosis vary depending on the type of the disease. The most common symptoms include: Pain in the arms, legs, trunk, and/or neck. Weakness in the arms, legs, trunk, and/or neck. Numbness in the arms, legs, trunk, and/or neck. Loss of sensation in the arms, legs, trunk, and/or neck. Loss of muscle mass in the arms, legs, trunk, and/or neck. Loss of muscle strength in the arms, legs, trunk, and/or neck. Loss of muscle coordination in the arms, legs, trunk, and/or neck. Loss of reflexes in the arms, legs, trunk, and/or neck. Loss of sensation in the arms, legs, trunk, and/or neck. Loss of muscle mass in the arms, legs, trunk, and/or neck. Loss of muscle strength in the arms, legs, trunk, and/or neck. Loss of muscle coordination in the arms, legs, trunk, and/or neck. Loss of reflexes in the arms, legs, trunk, and/or neck. Loss of
+Times for 10 inferences:
+21.82 s
+21.56 s
+21.59 s
+21.66 s
+21.55 s
+21.78 s
+21.49 s
+21.38 s
+21.27 s
+21.20 s
+Average inference time: 21.63 seconds
+
+Model name: phi-2-medquad_rank_ID
+### Instruction: What are the symptoms of Schwannomatosis ?  Assistant: What are the signs and symptoms of Schwannomatosis? The signs and symptoms of Schwannomatosis vary depending on the type of Schwannomatosis. The most common signs and symptoms of Schwannomatosis include: Pain in the neck, shoulder, arm, leg, or foot. Muscle weakness. Numbness or tingling in the affected area. Muscle wasting. Muscle atrophy. Muscle contractures. Muscle spasms. Muscle cramps. Muscle stiffness. Muscle spasms. Muscle weakness. Muscle atrophy. Muscle contractures. Muscle spasms. Muscle cramps. Muscle stiffness. Muscle weakness. Muscle atrophy. Muscle contractures. Muscle spasms. Muscle cramps. Muscle stiffness. Muscle weakness. Muscle atrophy. Muscle contractures. Muscle spasms. Muscle cramps. Muscle stiffness. Muscle weakness. Muscle atrophy. Muscle contractures. Muscle spasms. Muscle cramps. Muscle stiffness. Muscle weakness. Muscle atrophy. Muscle contractures. Muscle spasms. Muscle cramps. Muscle stiffness. Muscle weakness. Muscle atrophy. Muscle contractures. Muscle spasms. Muscle cramps. Muscle stiffness. Muscle weakness. Muscle atrophy. Muscle contractures. Muscle spasms. Muscle cramps
+Times for 10 inferences:
+21.88 s
+21.97 s
+21.65 s
+21.60 s
+21.67 s
+21.61 s
+21.49 s
+21.68 s
+21.34 s
+21.30 s
+Average inference time:21.62 s
