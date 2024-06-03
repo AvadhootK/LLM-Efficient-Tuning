@@ -24,3 +24,22 @@ Ranking:
 3. model with rank 1
 4. model with rank 14
 5. model with rank 64
+
+
+------------------------------------------------------------
+
+Different sample
+Evaluation scores for model with rank 1
+{'corpus_score': 0.40630667046422053, 'ex_level_scores': [0.40630667046422053]}
+
+Evaluation scores for model with rank 6
+{'corpus_score': 0.46099204987287523, 'ex_level_scores': [0.46099204987287523]}
+
+Evaluation scores for model with rank 14
+{'corpus_score': 0.38067975745551175, 'ex_level_scores': [0.38067975745551175]}
+
+Evaluation scores for model with rank ID
+{'corpus_score': 0.3307025028435556, 'ex_level_scores': [0.3307025028435556]}
+
+Evaluation scores for model with rank 64
+{'corpus_score': 0.4799104624256796, 'ex_level_scores': [0.4799104624256796]}

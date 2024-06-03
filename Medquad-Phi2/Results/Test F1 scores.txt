@@ -1,0 +1,6 @@
+prediction_1 = "Paris, known as the City of Light, is the capital of France"
+prediction_2 = "Paris is not the capital of France"
+answer = "Paris is the capital of France"
+
+F1 score for prediction_1: 0.7142857142857143
+F1 score for prediction_2: 0.9090909090909091
