@@ -1,4 +1,4 @@
-##README
+## README
 ### Intrinsic Dimentions - Phi2
 1. Intrinsic Dimension profile of Phi2 model on Medquad dataset. 
 
