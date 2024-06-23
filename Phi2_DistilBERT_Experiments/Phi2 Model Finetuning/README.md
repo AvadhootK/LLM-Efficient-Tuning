@@ -15,3 +15,5 @@
 
 ### Finetune model ID Profile + base model inference
 1. Analyzing base phi2 model ID vs fine-tuned phi2 model ID
+
+![image](https://github.com/abdessalam-eddib/llm_experiments/assets/72447002/ac5b67c4-a23c-48f8-8f64-fca5807262db)
