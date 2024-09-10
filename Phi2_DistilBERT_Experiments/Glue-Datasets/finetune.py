@@ -8,14 +8,20 @@ from transformers import (
     HfArgumentParser,
     TrainingArguments,
     AutoConfig, 
+    DataCollatorWithPadding,
     AutoTokenizer, 
     PretrainedConfig,
-    AutoModelForSequenceClassification
+    AutoModelForSequenceClassification,
+    EvalPrediction,
+    default_data_collator,
 )
 import torch 
 from tqdm import tqdm
 import time
 import numpy as np
+from peft import LoraConfig
+from trl import SFTTrainer
+from accelerate import PartialState
 
 # path to save the processed datasets
 save_path = "./processed_datasets"
@@ -133,6 +139,8 @@ def main():
     else:
         model_args, data_args, training_args = parser.parse_args_into_dataclasses()
     
+    device_string = PartialState().process_index
+
     # standardize when dealing with different variations of mnli
     if "mnli" in data_args.task_name:
         data_args.task_name = "mnli"
@@ -182,6 +190,8 @@ def main():
         cache_dir=model_args.cache_dir,
         revision=model_args.model_revision,
         token=True if model_args.token else None,
+        device_map={'':device_string}, 
+        torch_dtype=torch.bfloat16
     )
 
     # Preprocessing the raw_datasets
@@ -247,9 +257,10 @@ def main():
         )
         result = tokenizer(*args, padding=padding, max_length=max_seq_length, truncation=True)
 
-        # Map labels to IDs (not necessary for GLUE tasks)
         if label_to_id is not None and "label" in examples:
-            result["label"] = [(label_to_id[l] if l != -1 else -1) for l in examples["label"]]
+            result["labels"] = [(label_to_id[l] if l != -1 else -1) for l in examples["label"]]
+        else:
+            result["labels"] = examples["label"]
         return result
 
     # tokenize dataset
@@ -286,232 +297,127 @@ def main():
     # Log a few random samples from the training set:
     # for index in random.sample(range(len(train_dataset)), 3):
     #     print(f"Sample {index} of the training set: {train_dataset[index]}.")
-        
-    ####################################################################################################
-    # Determine maximum batch size 
-    # def get_batch_size(
-    #     model,
-    #     tokenizer,
-    #     num_tokens,
-    #     dataset_size,
-    #     max_batch_size,
-    #     device,
-    # ):
-    #     """
-    #     Determines the optimal batch size for a given model and device, based on
-    #     memory constraints and dataset size.
 
-    #     This function increments the batch size exponentially until the maximum
-    #     batch size or dataset size limit is reached, or a CUDA out of memory error
-    #     occurs, in which case the batch size is halved.
+    # Get the metric function
+    from datasets import load_metric
+    if data_args.task_name is not None:
+        metric = load_metric("glue", data_args.task_name, trust_remote_code=True)
+    else:
+        metric = load_metric("accuracy")
 
-    #     Args:
-    #         model (AutoModel): The model to be evaluated.
-    #         num_tokens (int): The maximum number of tokens per sample.
-    #         dataset_size (int): The total number of samples in the dataset.
-    #         max_batch_size (int or None): The maximum batch size allowed. If None,
-    #                                     the batch size is not limited by this parameter.
-    #         device (torch.device): The device on which the model is to be run.
-
-    #     Returns:
-    #         int: The optimal batch size determined by the function.
-    #     """
-
-    #     model.to(device)
-    #     batch_size = 2
-
-    #     while True:
-    #         print(f"Current batch size: {batch_size}")
-    #         if batch_size == 0:
-    #             print("Reduce sequence length . . .")
-    #             break
-    #         if max_batch_size is not None and batch_size > max_batch_size:
-    #             batch_size = max_batch_size
-    #             break
-
-    #         if batch_size >= dataset_size:
-    #             batch_size = batch_size // 2
-    #             break
-
-    #         try:
-    #             for _ in range(10):
-    #                 input_shape = (batch_size, num_tokens)
-    #                 max_token_id = len(tokenizer.get_vocab()) - 1
-    #                 inputs = torch.randint(
-    #                     0, max_token_id, input_shape, dtype=torch.long, device=device
-    #                 )
-    #                 _ = model(inputs)
-    #             batch_size *= 2
-
-    #         except RuntimeError as e:
-    #             if "CUDA out of memory" in str(e):
-    #                 print("CUDA out of memory. Reducing batch size . . .")
-    #                 batch_size = batch_size // 2
-    #                 return batch_size
-    #             else:
-    #                 raise e
-
-    #     # del model
-    #     # torch.cuda.empty_cache()
-
-    #     return batch_size
+    def compute_metrics(p: EvalPrediction):
+        preds = p.predictions[0] if isinstance(p.predictions, tuple) else p.predictions
+        preds = np.squeeze(preds) if is_regression else np.argmax(preds, axis=1)
+        if data_args.task_name is not None:
+            result = metric.compute(predictions=preds, references=p.label_ids)
+            if len(result) > 1:
+                result["combined_score"] = np.mean(list(result.values())).item()
+            return result
+        elif is_regression:
+            return {"mse": ((preds - p.label_ids) ** 2).mean().item()}
+        else:
+            return {"accuracy": (preds == p.label_ids).astype(np.float32).mean().item()}
     
-    # dataset_size = len(train_dataset)
-    # device = torch.device("cuda")
-    # optimal_batch_size = get_batch_size(model, tokenizer, data_args.max_seq_length, dataset_size, None, device)
-    # print("Size of training data of glue",data_args.task_name, dataset_size)
-    # print("Optimal batch size for glue",data_args.task_name, optimal_batch_size)
+    if data_args.pad_to_max_length:
+        data_collator = default_data_collator
+    elif training_args.fp16:
+        data_collator = DataCollatorWithPadding(tokenizer, pad_to_multiple_of=8)
+    else:
+        data_collator = None
 
-    # ##################################################################################################################
-    # # Compute hidden states
-    # num_data = 40
-    # per_batch = 4
-    # number_batches =  num_data // per_batch
+    import pickle
 
-    # device = torch.device("cuda")
-    # model.to(device)
+    # Load the rank pattern from the pickle file
+    rank_pattern_file_path = f'./rank_pattern/rank_pattern_{data_args.task_name}.pkl'
+    with open(rank_pattern_file_path, 'rb') as file:
+        rank_pattern = pickle.load(file)
 
-    # # Collect hidden layers
-    # hidden_layers = []
+    print("Loaded Rank Pattern:", rank_pattern)
 
-    # start_time = time.time()
+    # Load the alpha pattern from the pickle file
+    alpha_pattern_file_path = f'./alpha_pattern/alpha_pattern_{data_args.task_name}.pkl'
+    with open(alpha_pattern_file_path, 'rb') as file:
+        alpha_pattern = pickle.load(file)
 
-    # # Collect hidden layers per batch
-    # for batch in tqdm(range(number_batches)):
-    #     for i in range(per_batch):
+    print("Loaded alpha Pattern:", alpha_pattern)
 
-    #         # Extract inputs from the dataset using the tokenizer
-    #         inputs = {k: torch.tensor(v).to(device) for k, v in train_dataset[batch * per_batch + i].items() if k in ['input_ids', 'attention_mask']}
+    mean_rank_path = f'./mean_rank/mean_rank_{data_args.task_name}.pkl'
+    with open(mean_rank_path, 'rb') as file:
+        mean_rank = pickle.load(file)
+    mean_rank = int(mean_rank)
+    print("Loaded mean rank:", mean_rank)
 
-    #         # Perform forward pass through the model
-    #         with torch.no_grad():
-    #             outputs = model(**inputs, output_hidden_states=True)
-
-    #         # Append the hidden states to the list
-    #         hidden_layers.append(outputs.hidden_states)
-    
-    # end_time = time.time()
-    # elapsed_time = end_time - start_time
-    # print(hidden_layers[0])
-    # print(f"Time taken to compute hidden states of 40 samples of {data_args.task_name} : {elapsed_time:.2f} seconds")
-
-    ##################################################################################################################
-    # Compute hidden states
-    # num_data = 40
-    # batch_size = 4 
-
-    # device = torch.device("cuda")
-    # model.to(device)
-
-    # # List to store the hidden states activations
-    # activations = []
-
-    # start_time = time.time()
-
-    # for batch_start in tqdm(range(0, num_data, batch_size)):
-    #     # Extract a batch of inputs from the dataset
-    #     batch_inputs = {k: torch.tensor(v).to(device) for k, v in train_dataset[batch_start:batch_start + batch_size].items() if k in ['input_ids', 'attention_mask']}
-
-    #     # Perform forward pass through the model
-    #     with torch.no_grad():
-    #         outputs = model(**batch_inputs, output_hidden_states=True)
-
-    #     # Move hidden states to CPU, convert them to numpy, and store
-    #     hidden_states = [state.detach().cpu().numpy() for state in outputs.hidden_states]
-    #     activations.append(np.stack(hidden_states).mean(axis=2))
-
-    #     # Clear outputs to free memory
-    #     del outputs
-    #     torch.cuda.empty_cache()
-
-    # end_time = time.time()
-    # elapsed_time = end_time - start_time
-
-    # print(f"Time taken to compute and store activations of {data_args.task_name}: {elapsed_time:.2f} seconds")
-
-
-
-    ###########################################################################################################
-    # Store the activations of hidden states for each shard
-    def store_hidden_states(
-        model,
-        train_dataset, 
-        batch_size,
-        device,
-        path_to_activations,
-    ):
-        """
-        Store hidden states activations from a model into numpy arrays.
-
-        Args:
-        - model (AutoModel): The model from which to extract hidden states.
-        - path_to_shards (str): Directory path where dataset shards are stored.
-        - shard_id (int): ID of the dataset shard to process.
-        - batch_size (int): Batch size for data loading.
-        - num_workers (int): Number of worker processes for data loading.
-        - device (str): Device to use for model computation.
-        - path_to_activations (str): Directory path to save the activations numpy array.
-
-        Raises:
-        - FileNotFoundError: If the dataset shard file does not exist.
-        """
-        model.to(device)
-
-        # Initialize the dataloader
-        # dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size)
-        
-        print("Size of training data of glue",data_args.task_name, len(train_dataset))
-
-        # Store activations in a list
-        print("Storing activations...")
-        activations = []
-
-        start_time = time.time()
-    
-        # Manually batch the data
-        for i in tqdm(range(0, len(train_dataset), batch_size)):
-            inputs = {k: torch.tensor(v).to(device) for k, v in train_dataset[i:i + batch_size].items() if k in ['input_ids', 'attention_mask']}
-            print("Moved tensors to",device)
-            with torch.no_grad():
-                outputs = model(
-                    **inputs, 
-                    output_hidden_states=True
-                )
-
-            # Move hidden states to CPU and convert them to numpy
-            hidden_states = [state.detach().cpu().numpy() for state in outputs.hidden_states]
-
-            # Append the processed hidden states to the activations list
-            activations.append(np.stack(hidden_states).mean(axis=2))
-
-            del outputs
-            torch.cuda.empty_cache()
-
-        end_time = time.time()
-        elapsed_time = end_time - start_time
-        print(f"Time taken to compute activations of {data_args.task_name} : {elapsed_time:.2f} seconds")
-
-        os.makedirs(path_to_activations, exist_ok=True)
-        # Save activations
-        np.save(
-            f"{path_to_activations}/activations_full_{data_args.task_name}.npy",
-            np.concatenate(activations, axis=1),
-        )
-        print(f"Activations saved!")
-
-        # Clean up memory
-        del activations
-        torch.cuda.empty_cache()
-    
-    device = torch.device("cuda")
-
-    store_hidden_states(
+    print("**************************************")
+    print(model)
+    # Set training arguments
+    # rank = 1
+    training_arguments = TrainingArguments(
+        output_dir = "./results",
+        report_to="none",
+        num_train_epochs = 10,
+        fp16 = False,
+        bf16 = False,
+        per_device_train_batch_size = 1,
+        per_device_eval_batch_size = 1,
+        gradient_accumulation_steps = 1,
+        gradient_checkpointing = True,
+        max_grad_norm = 0.3,
+        learning_rate = 1e-4,
+        weight_decay = 0.001,
+        optim = "paged_adamw_32bit",
+        lr_scheduler_type = "cosine",
+        max_steps = -1,
+        warmup_ratio = 0.03,
+        group_by_length = True,
+        save_steps = 0,
+        logging_steps = 200,
+        label_names=["labels"],
+        eval_steps=200,  # Evaluate every 200 steps
+        evaluation_strategy="steps",  
+        ddp_find_unused_parameters=False,
+    )
+    # LoRA configuration
+    # alpha/rank = 8
+    peft_config = LoraConfig(
+        lora_dropout=0.05,
+        bias="none",
+        task_type="CAUSAL_LM",
+        target_modules=['q_proj','k_proj','v_proj','o_proj'],
+        rank_pattern = rank_pattern,
+        alpha_pattern = alpha_pattern,
+        # r = mean_rank,
+        # lora_alpha = 32
+    )
+    # Set supervised fine-tuning parameters
+    trainer = SFTTrainer(
         model=model,
         train_dataset=train_dataset,
-        batch_size=4,
-        device=device,
-        path_to_activations="./dataset_activations"
+        eval_dataset = val_dataset,
+        peft_config=peft_config,
+        # dataset_text_field="text",
+        compute_metrics=compute_metrics,
+        max_seq_length= data_args.max_seq_length,
+        tokenizer=tokenizer,
+        args=training_arguments,
+        data_collator = data_collator,
     )
+    metrics = trainer.train()
+    print("train", metrics)
+
+     # Loop to handle MNLI double evaluation (matched, mis-matched)
+    tasks = [data_args.task_name]
+    eval_datasets = [val_dataset]
+
+    for eval_dataset, task in zip(eval_datasets, tasks):
+        metrics = trainer.evaluate(eval_dataset=eval_dataset)
+        print("eval", metrics)
+
+    tasks = [data_args.task_name]
+    predict_datasets = [test_dataset]
+
+    for predict_dataset, task in zip(predict_datasets, tasks):
+        metrics = trainer.evaluate(eval_dataset=predict_dataset)
+        print("test", metrics)
 
 if __name__ == "__main__":
     main()
