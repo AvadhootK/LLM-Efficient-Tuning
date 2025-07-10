@@ -38,18 +38,21 @@ This repository contains experiments on a dynamic LoRA rank optimization framewo
 
 ### 1. Effect of Noise on ID Estimator
 
-![image](https://github.com/abdessalam-eddib/llm_experiments/assets/72447002/8ec54dbb-d968-4afc-93ec-b796afee7d7c)
+![Unknown](https://github.com/user-attachments/assets/2be2ed88-1bb0-43c5-bc65-d113801b1ef0)
+
 
 ### 2. Effect of Number of Samples on ID Estimator
 
-![image](https://github.com/abdessalam-eddib/llm_experiments/assets/72447002/b4ff1655-6d0e-4dd9-99b2-aa9d78826792)
+![Unknown-2](https://github.com/user-attachments/assets/121b1593-a197-4abb-850d-fdab94c7ddac)
+
 
 ### 3. Matrix Entropy Evaluation
 ### Phi2 Model Experiments
 
 a. Matrix Entropy Visualization
 
-![image](https://github.com/abdessalam-eddib/llm_experiments/assets/72447002/25ba1020-29b6-4e74-a87c-d38cf6413a8f)
+![Unknown-3](https://github.com/user-attachments/assets/6c52f8d1-2917-4b00-b493-ea878eaf12ce)
+
 
 b. Correlation Metric: 
 #### Pearson's correlation coefficient between matrix entropy and Intrinsic dimensions 
@@ -67,7 +70,8 @@ b. Correlation Metric:
 
 a. Matrix Entropy Visualization
 
-![image](https://github.com/abdessalam-eddib/llm_experiments/assets/72447002/83b232cf-1e5d-47ca-8033-daeb026baed5)
+![Unknown-4](https://github.com/user-attachments/assets/1255167d-9cd1-47df-a98d-0bb90d66d84e)
+
 
 
 b. Correlation Metric:
@@ -123,7 +127,8 @@ This section presents findings from pruning the Phi-2 model based on intrinsic d
 2.  **ID Profile Analysis Before and After Fine-Tuning:**
     Analyzing ID Profile before and after fine-tuning the pruned Phi-2 model. This helps in understanding the impact of pruning on the model's representational capacity.
 
-    ![Phi-2 ID Profile Analysis](https://github.com/abdessalam-eddib/llm_experiments/assets/72447002/22c23187-3dcf-4101-8f74-703fb6c747bc)
+    ![Unknown-5](https://github.com/user-attachments/assets/1280e2ea-f963-44de-b58f-6e16dfe9c47f)
+
 
 ## Intrinsic Dimensionality Analysis on Phi-2
 
@@ -132,7 +137,8 @@ This section details the intrinsic dimensionality analysis conducted on the Phi-
 1.  **Intrinsic Dimension Profile of Phi-2 on MedQuAD:**
     Presents the intrinsic dimension profile of the Phi-2 model when evaluated on the MedQuAD dataset.
 
-    ![Phi-2 MedQuAD ID Profile](https://github.com/abdessalam-eddib/llm_experiments/assets/72447002/8f069e39-3bdc-40ed-ad3d-b2525aff3f78)
+    ![Unknown-6](https://github.com/user-attachments/assets/0c37d4bc-bd3a-473b-b4d2-ac02cd5b51eb)
+
 
 2.  **Computed Batched Intrinsic Dimensions for Phi-2 on MedQuAD:**
     Details the computation of batched Intrinsic Dimensions for the Phi-2 model on the MedQuAD dataset, including the evaluation of ID using mean and standard deviation across all batches.
