@@ -146,8 +146,10 @@ This section details the intrinsic dimensionality analysis conducted on the Phi-
 3.  **Intrinsic Dimension Profile Analysis for Different ID Estimators on Phi-2 (MedQuAD):**
     Analyzes the intrinsic dimension profile using various ID estimators specifically for the Phi-2 model on the MedQuAD dataset.
 
-    ![Phi-2 MedQuAD ID Estimators 1](https://github.com/abdessalam-eddib/llm_experiments/assets/72447002/437384a5-ff1f-45f6-8015-3c6c100fceba)
-    ![Phi-2 MedQuAD ID Estimators 2](https://github.com/abdessalam-eddib/llm_experiments/assets/72447002/5421cd59-6758-41e2-a3a3-b12fc6b8d5be)
+    <img width="790" height="590" alt="Unknown-7" src="https://github.com/user-attachments/assets/bcafa555-c87a-4848-8169-947f0af9a06a" />
+    
+    <img width="790" height="590" alt="Unknown-8" src="https://github.com/user-attachments/assets/70c44352-e7a8-464a-b8d7-58dd067d3aea" />
+
 
 ## Fine-tuned vs. Base Model ID Profile Comparison
 
@@ -156,7 +158,8 @@ This section compares the intrinsic dimension profiles of the base Phi-2 model w
 1.  **Analyzing Base Phi-2 Model ID vs. Fine-tuned Phi-2 Model ID:**
     A comparative analysis illustrating how fine-tuning impacts the intrinsic dimensionality profile of the Phi-2 model's hidden representations.
 
-    ![Fine-tuned vs. Base Phi-2 ID Profile](https://github.com/abdessalam-eddib/llm_experiments/assets/72447002/ac5b67c4-a23c-48f8-8f64-fca5807262db)
+    <img width="790" height="590" alt="Unknown-9" src="https://github.com/user-attachments/assets/a92e03df-9254-4622-ba6b-97291de3c05f" />
+
 
 ## Intrinsic Dimensionality Analysis on DistilBERT for Sentiment Analysis
 
@@ -165,12 +168,12 @@ These outputs demonstrate the computation and analysis of intrinsic dimensions f
 1.  **Batched Intrinsic Dimensions for DistilBERT:**
     Computed batched Intrinsic Dimensions for DistilBERT on sentiment analysis task.
 
-    ![Intrinsic Dimension Batches 1](https://github.com/abdessalam-eddib/llm_experiments/assets/72447002/b5d61fe3-5cdc-4c39-a58c-74ed49674a1e)
+    <img width="916" height="547" alt="Unknown-10" src="https://github.com/user-attachments/assets/f0b3132d-b925-4a51-931b-3503342e72b6" />
 
 2.  **Evaluation of ID using Mean and Standard Deviation:**
     Evaluation of ID using mean and standard deviation across all batches.
 
-    ![Intrinsic Dimension Batches 2](https://github.com/abdessalam-eddib/llm_experiments/assets/72447002/e9e978ec-60eb-4376-8fe7-95602d6b64f5)
+    <img width="905" height="547" alt="Unknown-11" src="https://github.com/user-attachments/assets/624b4b82-783a-4794-882c-fcec4a5a00cb" />
 
 3.  **Analysis of Confidence Interval:**
     Analysis of Confidence Interval for the intrinsic dimensionality estimates.
@@ -178,7 +181,7 @@ These outputs demonstrate the computation and analysis of intrinsic dimensions f
 4.  **Intrinsic Dimension Profile Analysis for Different ID Estimators:**
     Intrinsic dimension profile analysis comparing various ID estimators.
 
-    ![ID Profile Analysis](https://github.com/abdessalam-eddib/llm_experiments/assets/72447002/722a0c01-2d49-4498-9b83-a79c67049e92)
+    <img width="790" height="590" alt="Unknown-12" src="https://github.com/user-attachments/assets/1b41a1ba-4f9e-425b-9921-8c02c42cdfda" />
 
 5.  **Multiple Trials for ID Estimators:**
     Running 10 trials for all ID estimators to ensure robustness and consistency of results.
@@ -186,4 +189,5 @@ These outputs demonstrate the computation and analysis of intrinsic dimensions f
 6.  **Local Density Calculation:**
     Demonstrates the calculation of local density within the hidden representations.
 
-    ![Local Density Calculation](https://github.com/abdessalam-eddib/llm_experiments/assets/72447002/de60021c-35b8-4ba4-8bc3-47d896fc8806)
+    <img width="1008" height="701" alt="Unknown-13" src="https://github.com/user-attachments/assets/c882dde9-97d7-4c86-8928-c8012b95e4d8" />
+
